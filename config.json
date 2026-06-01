@@ -1,0 +1,93 @@
+{
+  "General": {
+    "ServerName": "",
+    "Environment": "Produccion",
+    "Client": "General",
+    "ServerType": "Web",
+    "OutputFolder": "C:\\Scripts\\HealthCheck\\reports",
+    "KeepReportsDays": 30
+  },
+  "Thresholds": {
+    "CpuWarning": 70,
+    "CpuCritical": 90,
+    "RamWarning": 80,
+    "RamCritical": 90,
+    "DiskWarningFreePercent": 20,
+    "DiskCriticalFreePercent": 10
+  },
+  "Mail": {
+    "Enabled": true,
+    "SmtpServer": "smtp.gmail.com",
+    "SmtpPort": 587,
+    "UseSsl": true,
+    "From": "source_mail@example.com",
+    "To": [
+      "destination_mail@example.com"
+    ],
+    "CredentialPath": "C:\\Scripts\\HealthCheck\\credentials\\smtp_credential.xml",
+    "SendOnlyOnAlert": false
+  },
+  "Services": [
+    "W3SVC",
+    "WAS",
+    "MSSQLSERVER",
+    "SQLSERVERAGENT",
+    "Schedule",
+    "WinRM"
+  ],
+  "Urls": [
+    "https://example1.com",
+    "https://example2.com"
+  ],
+  "Ports": [
+    {
+      "Port": 80,
+      "Name": "HTTP",
+      "Description": "Puerto usado para trafico web sin cifrado."
+    },
+    {
+      "Port": 443,
+      "Name": "HTTPS",
+      "Description": "Puerto usado para trafico web seguro mediante SSL/TLS."
+    },
+    {
+      "Port": 3389,
+      "Name": "RDP",
+      "Description": "Puerto usado para conexion remota al servidor mediante Remote Desktop."
+    },
+    {
+      "Port": 1433,
+      "Name": "SQL Server",
+      "Description": "Puerto comunmente usado por Microsoft SQL Server."
+    }
+  ],
+  "ScheduledTasks": {
+    "Mode": "ConfiguredOnly",
+    "IncludePaths": [
+        "\\Guatemala\\",
+        "\\Honduras\\"
+      ],
+    "IncludeTaskNames": [],
+    "MaxResults": 50
+  },
+  "IIS": {
+    "CheckAllSites": false,
+    "SitesToCheck": [
+      "Default Web Site",
+      "UnicollectionsHN",
+      "UnicollectionsGT"
+    ],
+    "CheckAllAppPools": false,
+    "AppPoolsToCheck": [
+      "DefaultAppPool",
+      "UnicollectionsHN",
+      "UnicollectionsGT"
+    ]
+  },
+  "StatusRules": {
+    "ReviewFindingsToReview": 1,
+    "AlertFindingsToAlert": 1,
+    "CriticalFindingsToCritical": 1,
+    "IgnoreReviewForGeneralStatus": false
+  }
+}
