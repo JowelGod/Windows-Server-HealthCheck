@@ -1,0 +1,393 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #eef2f7;
+    color: #111827;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.page {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 28px;
+}
+
+.hero {
+    color: #ffffff;
+    padding: 28px;
+    border-radius: 22px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
+    background: linear-gradient(135deg, #111827, #1f2937);
+}
+
+.hero.status-ok {
+    background: linear-gradient(135deg, #064e3b, #16a34a);
+}
+
+.hero.status-review {
+    background: linear-gradient(135deg, #78350f, #f59e0b);
+}
+
+.hero.status-alert {
+    background: linear-gradient(135deg, #7f1d1d, #dc2626);
+}
+
+.hero.status-critical {
+    background: linear-gradient(135deg, #450a0a, #991b1b);
+}
+
+.eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.15;
+}
+
+.hero p {
+    margin: 6px 0 0 0;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.hero-status {
+    min-width: 210px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 18px;
+    padding: 18px;
+    text-align: right;
+}
+
+.hero-status span {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+.hero-status strong {
+    display: block;
+    font-size: 30px;
+    margin-top: 6px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.metric-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.metric-label {
+    color: #6b7280;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
+
+.metric-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.metric-footer {
+    margin-top: 12px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.section h2 {
+    margin: 0 0 14px 0;
+    color: #111827;
+    font-size: 20px;
+}
+
+.summary-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #374151;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.info-grid div {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.info-grid span {
+    display: block;
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.info-grid strong {
+    display: block;
+    color: #111827;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+th {
+    background: #111827;
+    color: #ffffff;
+    padding: 11px 12px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+td {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 11px 12px;
+    vertical-align: top;
+    color: #374151;
+}
+
+tbody tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.badge-ok {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-review {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-alert {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-critical {
+    background: #fecaca;
+    color: #7f1d1d;
+}
+
+.badge-neutral {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.status-ok {
+    color: #16a34a;
+}
+
+.status-review {
+    color: #f59e0b;
+}
+
+.status-alert {
+    color: #dc2626;
+}
+
+.status-critical {
+    color: #991b1b;
+}
+
+.status-unknown {
+    color: #6b7280;
+}
+
+.bar {
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.bar-fill {
+    height: 10px;
+    border-radius: 999px;
+}
+
+.ok-fill {
+    background: #16a34a;
+}
+
+.review-fill {
+    background: #f59e0b;
+}
+
+.alert-fill {
+    background: #dc2626;
+}
+
+.critical-fill {
+    background: #991b1b;
+}
+
+.neutral-fill {
+    background: #6b7280;
+}
+
+.empty-state {
+    background: #f9fafb;
+    border: 1px dashed #cbd5e1;
+    color: #6b7280;
+    padding: 14px;
+    border-radius: 14px;
+}
+
+.muted {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.footer {
+    color: #6b7280;
+    text-align: center;
+    font-size: 12px;
+    padding: 18px;
+}
+
+.footer p {
+    margin: 4px 0;
+}
+
+@media print {
+    body {
+        background: #ffffff;
+    }
+
+    .page {
+        max-width: none;
+        padding: 16px;
+    }
+
+    .hero,
+    .metric-card,
+    .section {
+        box-shadow: none;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.metric-card-wide {
+    min-height: 150px;
+}
+
+.disk-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mini-disk-item {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.mini-disk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #111827;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.mini-disk-header strong {
+    font-size: 15px;
+}
+
+.mini-disk-header span {
+    color: #374151;
+    font-weight: 700;
+}
+
+.mini-disk-footer {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.mini-empty {
+    color: #6b7280;
+    background: #f9fafb;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 12px;
+}
