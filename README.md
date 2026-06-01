@@ -65,6 +65,9 @@ C:\Scripts\HealthCheck\
 ├── templates\
 │   └── report-style.css
 │
+├── tools\
+│   └── Create-SmtpCredential.ps1
+│
 └── reports\
     ├── html\
     ├── pdf\
