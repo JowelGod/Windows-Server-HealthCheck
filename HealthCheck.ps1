@@ -269,7 +269,11 @@ $OS = Invoke-SafeCommand "Sistema Operativo" {
     Get-CimInstance Win32_OperatingSystem -ErrorAction Stop
 }
 
+<<<<<<< HEAD
 $ComputerSystem = Invoke-SafeCommand "ComputerSystem" {
+=======
+$ComputerSystem = Safe-Run "ComputerSystem" {
+>>>>>>> origin/main
     Get-CimInstance Win32_ComputerSystem -ErrorAction Stop
 }
 
@@ -302,7 +306,11 @@ else {
 # CPU
 # =========================
 
+<<<<<<< HEAD
 $CpuUsage = Invoke-SafeCommand "CPU" {
+=======
+$CpuUsage = Safe-Run "CPU" {
+>>>>>>> origin/main
     $CpuData = Get-CimInstance Win32_Processor -ErrorAction Stop |
         Measure-Object -Property LoadPercentage -Average
 
@@ -316,7 +324,11 @@ $CpuUsage = Invoke-SafeCommand "CPU" {
 
 $CpuStatus = Get-MetricStatus -Value $CpuUsage -Warning $CpuWarning -Critical $CpuCritical
 
+<<<<<<< HEAD
 $CpuDetailRaw = Invoke-SafeCommand "CPU Detalle" {
+=======
+$CpuDetailRaw = Safe-Run "CPU Detalle" {
+>>>>>>> origin/main
     Get-CimInstance Win32_Processor -ErrorAction Stop
 }
 
@@ -389,7 +401,11 @@ if ($RamStatus -in @("ALERTA", "CRITICO")) {
 # PROCESOS TOP
 # =========================
 
+<<<<<<< HEAD
 $TopProcesses = Invoke-SafeCommand "Procesos principales" {
+=======
+$TopProcesses = Safe-Run "Procesos principales" {
+>>>>>>> origin/main
     Get-Process -ErrorAction Stop |
         Sort-Object -Property CPU -Descending |
         Select-Object -First 8 Name, Id, CPU, WorkingSet64
@@ -427,7 +443,11 @@ else {
 # DISCOS
 # =========================
 
+<<<<<<< HEAD
 $DisksRaw = Invoke-SafeCommand "Discos" {
+=======
+$DisksRaw = Safe-Run "Discos" {
+>>>>>>> origin/main
     Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3" -ErrorAction Stop |
         Where-Object { $_.Size -ne $null -and $_.Size -gt 0 }
 }
@@ -819,9 +839,15 @@ $($ServiceRows -join "`n")
 # TAREAS PROGRAMADAS
 # =========================
 
+<<<<<<< HEAD
 $ScheduledTasksStatus = Invoke-SafeCommand "Tareas programadas" {
 
     $TaskMode = "ConfiguredOnly" #ConfiguredOnly/All
+=======
+$ScheduledTasksStatus = Safe-Run "Tareas programadas" {
+
+    $TaskMode = "ConfiguredOnly"
+>>>>>>> origin/main
     $IncludePaths = @()
     $IncludeTaskNames = @()
     $MaxTaskResults = 50
@@ -1009,7 +1035,11 @@ else {
 # EVENTOS
 # =========================
 
+<<<<<<< HEAD
 $CriticalEvents = Invoke-SafeCommand "Eventos criticos" {
+=======
+$CriticalEvents = Safe-Run "Eventos criticos" {
+>>>>>>> origin/main
     Get-WinEvent -FilterHashtable @{
         LogName = "System"
         Level = 1,2
@@ -1537,7 +1567,11 @@ if ($ShouldSendMail) {
 
         $Credential = Import-Clixml -Path $CredentialPath
 
+<<<<<<< HEAD
         $Subject = "HealthCheck $Client - $env:COMPUTERNAME - $EstadoGeneral"
+=======
+        $Subject = "HealthCheck $env:COMPUTERNAME - $EstadoGeneral"
+>>>>>>> origin/main
 
         $Body = @"
 Este es un reporte de ejemplo automatico de Health Check.
