@@ -1,0 +1,721 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>Health Check - PC-SOP015</title>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #eef2f7;
+    color: #111827;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.page {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 28px;
+}
+
+.hero {
+    color: #ffffff;
+    padding: 28px;
+    border-radius: 22px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: center;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
+    background: linear-gradient(135deg, #111827, #1f2937);
+}
+
+.hero.status-ok {
+    background: linear-gradient(135deg, #064e3b, #16a34a);
+}
+
+.hero.status-review {
+    background: linear-gradient(135deg, #78350f, #f59e0b);
+}
+
+.hero.status-alert {
+    background: linear-gradient(135deg, #7f1d1d, #dc2626);
+}
+
+.hero.status-critical {
+    background: linear-gradient(135deg, #450a0a, #991b1b);
+}
+
+.eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    opacity: 0.85;
+    margin-bottom: 6px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.15;
+}
+
+.hero p {
+    margin: 6px 0 0 0;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.hero-status {
+    min-width: 210px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    border-radius: 18px;
+    padding: 18px;
+    text-align: right;
+}
+
+.hero-status span {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+.hero-status strong {
+    display: block;
+    font-size: 30px;
+    margin-top: 6px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.metric-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.metric-label {
+    color: #6b7280;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
+
+.metric-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.metric-footer {
+    margin-top: 12px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+.section h2 {
+    margin: 0 0 14px 0;
+    color: #111827;
+    font-size: 20px;
+}
+
+.summary-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #374151;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.info-grid div {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px;
+}
+
+.info-grid span {
+    display: block;
+    color: #6b7280;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.info-grid strong {
+    display: block;
+    color: #111827;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+thead {
+    display: table-header-group;
+}
+
+tr {
+    page-break-inside: avoid;
+}
+
+th {
+    background: #111827;
+    color: #ffffff;
+    padding: 11px 12px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+td {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 11px 12px;
+    vertical-align: top;
+    color: #374151;
+}
+
+tbody tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.badge-ok {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-review {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-alert {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-critical {
+    background: #fecaca;
+    color: #7f1d1d;
+}
+
+.badge-neutral {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.status-ok {
+    color: #16a34a;
+}
+
+.status-review {
+    color: #f59e0b;
+}
+
+.status-alert {
+    color: #dc2626;
+}
+
+.status-critical {
+    color: #991b1b;
+}
+
+.status-unknown {
+    color: #6b7280;
+}
+
+.bar {
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.bar-fill {
+    height: 10px;
+    border-radius: 999px;
+}
+
+.ok-fill {
+    background: #16a34a;
+}
+
+.review-fill {
+    background: #f59e0b;
+}
+
+.alert-fill {
+    background: #dc2626;
+}
+
+.critical-fill {
+    background: #991b1b;
+}
+
+.neutral-fill {
+    background: #6b7280;
+}
+
+.empty-state {
+    background: #f9fafb;
+    border: 1px dashed #cbd5e1;
+    color: #6b7280;
+    padding: 14px;
+    border-radius: 14px;
+}
+
+.muted {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.footer {
+    color: #6b7280;
+    text-align: center;
+    font-size: 12px;
+    padding: 18px;
+}
+
+.footer p {
+    margin: 4px 0;
+}
+
+@media print {
+    body {
+        background: #ffffff;
+    }
+
+    .page {
+        max-width: none;
+        padding: 16px;
+    }
+
+    .hero,
+    .metric-card,
+    .section {
+        box-shadow: none;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.metric-card-wide {
+    min-height: 150px;
+}
+
+.disk-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mini-disk-item {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.mini-disk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #111827;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.mini-disk-header strong {
+    font-size: 15px;
+}
+
+.mini-disk-header span {
+    color: #374151;
+    font-weight: 700;
+}
+
+.mini-disk-footer {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.mini-empty {
+    color: #6b7280;
+    background: #f9fafb;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+</style>
+</head>
+
+<body>
+<div class='page'>
+
+    <div class='hero status-review'>
+        <div>
+            <div class='eyebrow'>Reporte automatico de Health Check</div>
+            <h1>PC-SOP015</h1>
+            <p>Cliente: General | Ambiente: Produccion | Tipo: Web</p>
+            <p>Generado: 20/05/2026 17:28:36 | Usuario: SYSTEM</p>
+        </div>
+        <div class='hero-status'>
+            <span>Estado general</span>
+            <strong>REVISAR</strong>
+        </div>
+    </div>
+
+    <div class='summary-grid'>
+        <div class='metric-card'>
+            <div class='metric-label'>CPU</div>
+            <div class='metric-value'>18%</div>
+            <div class='bar'><div class='bar-fill ok-fill' style='width:18%'></div></div>
+            <div class='metric-footer'><span class='badge badge-ok'>OK</span></div>
+        </div>
+
+        <div class='metric-card'>
+            <div class='metric-label'>RAM</div>
+            <div class='metric-value'>62.61%</div>
+            <div class='bar'><div class='bar-fill ok-fill' style='width:63%'></div></div>
+            <div class='metric-footer'><span class='badge badge-ok'>OK</span></div>
+        </div>
+
+        <div class='metric-card metric-card-wide'>
+            <div class='metric-label'>Discos locales</div>
+            <div class='disk-summary'>    <div class='mini-disk-item'>
+        <div class='mini-disk-header'>
+            <strong>C:</strong>
+            <span>67.73% libre</span>
+        </div>
+        <div class='bar'><div class='bar-fill ok-fill' style='width:32%'></div></div>
+        <div class='mini-disk-footer'>
+            302.33 GB libres de 446.37 GB <span class='badge badge-ok'>OK</span>
+        </div>
+    </div></div>
+        </div>
+
+        <div class='metric-card'>
+            <div class='metric-label'>Eventos 24h</div>
+            <div class='metric-value'>10</div>
+            <div class='metric-footer'>System: Critical/Error</div>
+        </div>
+    </div>
+
+    <div class='section'>
+        <h2>Resumen ejecutivo</h2>
+        <p class='summary-text'>El servidor se encuentra operativo, pero se detectaron hallazgos preventivos que conviene revisar para evitar posibles incidencias.</p>
+        <p class='summary-text'>
+            Hallazgos detectados:
+            <strong>CRITICO:</strong> 0 |
+            <strong>ALERTA:</strong> 3 |
+            <strong>REVISAR:</strong> 7
+        </p>
+    </div>
+
+    
+
+    <div class='section'>
+        <h2>Hallazgos principales y recomendaciones</h2>
+        <table>
+<thead>
+<tr>
+<th>Severidad</th>
+<th>Hallazgo</th>
+<th>Recomendacion</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><span class='badge badge-alert'>ALERTA</span></td><td><strong>IIS no disponible</strong><br><span class='muted'>No fue posible consultar IIS: No se carg&#243; el m&#243;dulo &#39;WebAdministration&#39; especificado porque no se encontr&#243; ning&#250;n archivo de m&#243;dulo v&#225;lido en ning&#250;n directorio de m&#243;dulo.</span></td><td>Validar si IIS esta instalado y si el usuario tiene permisos suficientes.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Servicio no encontrado</strong><br><span class='muted'>El servicio W3SVC no existe en este servidor.</span></td><td>Confirmar si el servicio aplica para el tipo de servidor configurado.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Servicio no encontrado</strong><br><span class='muted'>El servicio WAS no existe en este servidor.</span></td><td>Confirmar si el servicio aplica para el tipo de servidor configurado.</td></tr>
+<tr><td><span class='badge badge-alert'>ALERTA</span></td><td><strong>Servicio detenido</strong><br><span class='muted'>El servicio SQLSERVERAGENT se encuentra en estado Stopped.</span></td><td>Validar si el servicio es requerido para este servidor y reiniciarlo si aplica.</td></tr>
+<tr><td><span class='badge badge-alert'>ALERTA</span></td><td><strong>Servicio detenido</strong><br><span class='muted'>El servicio WinRM se encuentra en estado Stopped.</span></td><td>Validar si el servicio es requerido para este servidor y reiniciarlo si aplica.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Eventos criticos o errores recientes</strong><br><span class='muted'>Se detectaron 10 eventos de nivel critico/error en System durante las ultimas 24 horas.</span></td><td>Revisar el visor de eventos para identificar recurrencia, origen e impacto.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Puerto cerrado</strong><br><span class='muted'>El puerto 80 (HTTP) aparece cerrado localmente.</span></td><td>Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Puerto cerrado</strong><br><span class='muted'>El puerto 443 (HTTPS) aparece cerrado localmente.</span></td><td>Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Puerto cerrado</strong><br><span class='muted'>El puerto 3389 (RDP) aparece cerrado localmente.</span></td><td>Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo.</td></tr>
+<tr><td><span class='badge badge-review'>REVISAR</span></td><td><strong>Puerto cerrado</strong><br><span class='muted'>El puerto 1433 (SQL Server) aparece cerrado localmente.</span></td><td>Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo.</td></tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>Informacion del servidor</h2>
+        <div class='info-grid'>
+            <div><span>Servidor</span><strong>PC-SOP015</strong></div>
+            <div><span>Sistema operativo</span><strong>Microsoft Windows 11 Pro</strong></div>
+            <div><span>Version</span><strong>10.0.26200</strong></div>
+            <div><span>Ultimo reinicio</span><strong>05/20/2026 09:14:23</strong></div>
+            <div><span>Uptime</span><strong>0 dias, 8 horas, 13 minutos</strong></div>
+            <div><span>Estado</span><strong><span class='badge badge-review'>REVISAR</span></strong></div>
+        </div>
+    </div>
+
+    <div class='section'>
+        <h2>CPU / Procesador</h2>
+        <p class='summary-text'>
+            Uso actual de CPU: <strong>18%</strong> | Estado: <span class='badge badge-ok'>OK</span>
+        </p>
+        <table>
+<thead>
+<tr>
+<th>Procesador</th>
+<th>Socket</th>
+<th>Nucleos</th>
+<th>Procesadores logicos</th>
+<th>Velocidad Max.</th>
+<th>Carga actual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+            <td>Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz</td>
+            <td>SOCKET 0</td>
+            <td>4</td>
+            <td>8</td>
+            <td>3401 MHz</td>
+            <td>16%</td>
+        </tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>Discos locales</h2>
+        <table>
+<thead>
+<tr>
+<th>Unidad</th>
+<th>Etiqueta</th>
+<th>Sistema</th>
+<th>Total</th>
+<th>Usado</th>
+<th>Libre</th>
+<th>% Libre</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+                <td>C:</td>
+                <td></td>
+                <td>NTFS</td>
+                <td>446.37 GB</td>
+                <td>144.04 GB</td>
+                <td>302.33 GB</td>
+                <td>67.73% libre <div class='bar'><div class='bar-fill ok-fill' style='width:32%'></div></div></td>
+                <td><span class='badge badge-ok'>OK</span></td>
+            </tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>Servicios criticos</h2>
+        <table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Nombre descriptivo</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>W3SVC</td><td>No encontrado</td><td><span class='badge badge-neutral'>No encontrado</span></td></tr>
+<tr><td>WAS</td><td>No encontrado</td><td><span class='badge badge-neutral'>No encontrado</span></td></tr>
+<tr><td>MSSQLSERVER</td><td>SQL Server (MSSQLSERVER)</td><td><span class='badge badge-ok'>Running</span></td></tr>
+<tr><td>SQLSERVERAGENT</td><td>SQL Server Agent (MSSQLSERVER)</td><td><span class='badge badge-alert'>Stopped</span></td></tr>
+<tr><td>Schedule</td><td>Programador de tareas</td><td><span class='badge badge-ok'>Running</span></td></tr>
+<tr><td>WinRM</td><td>Administraci&#243;n remota de Windows (WS-Management)</td><td><span class='badge badge-alert'>Stopped</span></td></tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>IIS - Sitios</h2>
+        <div class='empty-state'>No se carg&#243; el m&#243;dulo &#39;WebAdministration&#39; especificado porque no se encontr&#243; ning&#250;n archivo de m&#243;dulo v&#225;lido en ning&#250;n directorio de m&#243;dulo.</div>
+    </div>
+
+    <div class='section'>
+        <h2>IIS - Application Pools</h2>
+        <div class='empty-state'>No se carg&#243; el m&#243;dulo &#39;WebAdministration&#39; especificado porque no se encontr&#243; ning&#250;n archivo de m&#243;dulo v&#225;lido en ning&#250;n directorio de m&#243;dulo.</div>
+    </div>
+
+    <div class='section'>
+        <h2>URLs / Aplicativos</h2>
+        <table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Estado</th>
+<th>HTTP</th>
+<th>Tiempo</th>
+<th>Mensaje</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>https://unicollections-hn.mcnoc.app/Login.aspx</td><td><span class='badge badge-ok'>OK</span></td><td>200</td><td>827 ms</td><td>Disponible</td></tr>
+<tr><td>https://unicollections-gt.mcnoc.app/Login.aspx</td><td><span class='badge badge-ok'>OK</span></td><td>200</td><td>1540 ms</td><td>Disponible</td></tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>Puertos locales</h2>
+        <table>
+<thead>
+<tr>
+<th>Puerto</th>
+<th>Servicio</th>
+<th>Descripcion</th>
+<th>Estado</th>
+<th>Mensaje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+        <td>80</td>
+        <td>HTTP</td>
+        <td>Puerto usado para trafico web sin cifrado.</td>
+        <td><span class='badge badge-alert'>Cerrado</span></td>
+        <td>No se detecto escucha local</td>
+    </tr>
+<tr>
+        <td>443</td>
+        <td>HTTPS</td>
+        <td>Puerto usado para trafico web seguro mediante SSL/TLS.</td>
+        <td><span class='badge badge-alert'>Cerrado</span></td>
+        <td>No se detecto escucha local</td>
+    </tr>
+<tr>
+        <td>3389</td>
+        <td>RDP</td>
+        <td>Puerto usado para conexion remota al servidor mediante Remote Desktop.</td>
+        <td><span class='badge badge-alert'>Cerrado</span></td>
+        <td>No se detecto escucha local</td>
+    </tr>
+<tr>
+        <td>1433</td>
+        <td>SQL Server</td>
+        <td>Puerto comunmente usado por Microsoft SQL Server.</td>
+        <td><span class='badge badge-alert'>Cerrado</span></td>
+        <td>No se detecto escucha local</td>
+    </tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>Eventos criticos y errores recientes</h2>
+        <table>
+<thead>
+<tr>
+<th>Fecha</th>
+<th>ID</th>
+<th>Proveedor</th>
+<th>Nivel</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>05/20/2026 15:22:48</td><td>11</td><td>Microsoft-Windows-Security-Kerberos</td><td>Error</td></tr>
+<tr><td>05/20/2026 14:06:45</td><td>11</td><td>Microsoft-Windows-Security-Kerberos</td><td>Error</td></tr>
+<tr><td>05/20/2026 12:39:59</td><td>11</td><td>Microsoft-Windows-Security-Kerberos</td><td>Error</td></tr>
+<tr><td>05/20/2026 10:59:40</td><td>11</td><td>Microsoft-Windows-Security-Kerberos</td><td>Error</td></tr>
+<tr><td>05/20/2026 10:43:55</td><td>20</td><td>Microsoft-Windows-WindowsUpdateClient</td><td>Error</td></tr>
+<tr><td>05/20/2026 10:06:08</td><td>10028</td><td>Microsoft-Windows-DistributedCOM</td><td>Error</td></tr>
+<tr><td>05/20/2026 10:06:04</td><td>10028</td><td>Microsoft-Windows-DistributedCOM</td><td>Error</td></tr>
+<tr><td>05/20/2026 09:43:48</td><td>10028</td><td>Microsoft-Windows-DistributedCOM</td><td>Error</td></tr>
+<tr><td>05/20/2026 09:43:44</td><td>10028</td><td>Microsoft-Windows-DistributedCOM</td><td>Error</td></tr>
+<tr><td>05/20/2026 09:15:22</td><td>11</td><td>Microsoft-Windows-Security-Kerberos</td><td>Error</td></tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='section'>
+        <h2>Tareas programadas</h2>
+        <div class='empty-state'>No se encontraron tareas programadas relevantes con la configuracion actual.</div>
+    </div>
+
+    <div class='section'>
+        <h2>Procesos principales</h2>
+        <table>
+<thead>
+<tr>
+<th>Proceso</th>
+<th>PID</th>
+<th>CPU acumulado</th>
+<th>RAM</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>SSMS</td><td>10980</td><td>3642.03</td><td>156.77 MB</td></tr>
+<tr><td>dwm</td><td>1268</td><td>2834.7</td><td>97 MB</td></tr>
+<tr><td>msedgewebview2</td><td>13384</td><td>1953.12</td><td>40.02 MB</td></tr>
+<tr><td>mpdwsvc</td><td>16048</td><td>1735.97</td><td>110.7 MB</td></tr>
+<tr><td>mpdwsvc</td><td>7940</td><td>1660.25</td><td>50.38 MB</td></tr>
+<tr><td>sqlservr</td><td>10952</td><td>1614.2</td><td>116.25 MB</td></tr>
+<tr><td>sqlservr</td><td>12924</td><td>1479.84</td><td>104.99 MB</td></tr>
+<tr><td>ms-teams</td><td>11164</td><td>1430.39</td><td>30.99 MB</td></tr>
+</tbody>
+</table>
+    </div>
+
+    <div class='footer'>
+        <p>Reporte generado automaticamente por HealthCheck Local.</p>
+    </div>
+
+</div>
+</body>
+</html>

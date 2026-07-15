@@ -1,0 +1,10 @@
+﻿2026-05-20 16:58:20 - Inicio Health Check
+2026-05-20 16:58:24 - ERROR IIS: No se cargó el módulo 'WebAdministration' especificado porque no se encontró ningún archivo de módulo válido en ningún directorio de módulo.
+2026-05-20 16:58:37 - JSON generado: C:\Scripts\HealthCheck\reports\json\HealthCheck_PC-SOP015_2026-05-20_16-58-20.json
+2026-05-20 16:58:37 - HTML generado: C:\Scripts\HealthCheck\reports\html\HealthCheck_PC-SOP015_2026-05-20_16-58-20.html
+2026-05-20 16:58:41 - PDF generado: C:\Scripts\HealthCheck\reports\pdf\HealthCheck_PC-SOP015_2026-05-20_16-58-20.pdf
+2026-05-20 16:58:43 - Correo enviado correctamente a joel.valencia@mccollect.mx farith.almaguer@mccollect.mx jose.rojo@mccollect.mx ricardo.coyote@mccollect.mx
+2026-05-20 16:58:43 - Limpieza aplicada en C:\Scripts\HealthCheck\reports\html. Retencion: 30 dias.
+2026-05-20 16:58:43 - Limpieza aplicada en C:\Scripts\HealthCheck\reports\pdf. Retencion: 30 dias.
+2026-05-20 16:58:43 - Limpieza aplicada en C:\Scripts\HealthCheck\reports\logs. Retencion: 30 dias.
+2026-05-20 16:58:43 - Limpieza aplicada en C:\Scripts\HealthCheck\reports\json. Retencion: 30 dias.

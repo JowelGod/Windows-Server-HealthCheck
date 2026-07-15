@@ -1,0 +1,180 @@
+﻿{
+    "serverName":  "PC-SOP015",
+    "user":  "SYSTEM",
+    "executionDate":  "2026-05-19 13:56:38",
+    "environment":  "Produccion",
+    "client":  "General",
+    "serverType":  "Web",
+    "status":  "ALERTA",
+    "summary":  "El servidor se encuentra operativo, pero presenta condiciones que requieren atencion para prevenir afectacion al servicio.",
+    "operatingSystem":  {
+                            "caption":  "Microsoft Windows 11 Pro",
+                            "uptime":  "0 dias, 4 horas, 45 minutos",
+                            "version":  "10.0.26200",
+                            "lastBoot":  "05/19/2026 09:11:07"
+                        },
+    "metrics":  {
+                    "ramFreeGB":  7.37,
+                    "ramUsage":  53.63,
+                    "ramStatus":  "OK",
+                    "ramTotalGB":  15.89,
+                    "cpuUsage":  20,
+                    "cpuStatus":  "OK"
+                },
+    "disks":  {
+                  "Drive":  "C:",
+                  "VolumeName":  "",
+                  "FileSystem":  "NTFS",
+                  "SizeGB":  446.37,
+                  "UsedGB":  139.24,
+                  "FreeGB":  307.13,
+                  "UsedPercent":  31.19,
+                  "FreePercent":  68.81,
+                  "Status":  "OK"
+              },
+    "services":  [
+                     {
+                         "Name":  "W3SVC",
+                         "DisplayName":  "No encontrado",
+                         "Status":  "No encontrado"
+                     },
+                     {
+                         "Name":  "WAS",
+                         "DisplayName":  "No encontrado",
+                         "Status":  "No encontrado"
+                     },
+                     {
+                         "Name":  "MSSQLSERVER",
+                         "DisplayName":  "SQL Server (MSSQLSERVER)",
+                         "Status":  "Running"
+                     },
+                     {
+                         "Name":  "SQLSERVERAGENT",
+                         "DisplayName":  "SQL Server Agent (MSSQLSERVER)",
+                         "Status":  "Stopped"
+                     },
+                     {
+                         "Name":  "Schedule",
+                         "DisplayName":  "Programador de tareas",
+                         "Status":  "Running"
+                     },
+                     {
+                         "Name":  "WinRM",
+                         "DisplayName":  "Administración remota de Windows (WS-Management)",
+                         "Status":  "Stopped"
+                     }
+                 ],
+    "urls":  [
+                 {
+                     "Url":  "https://unicollections-hn.mcnoc.app/Login.aspx",
+                     "Status":  "OK",
+                     "HttpCode":  200,
+                     "ResponseMs":  1086,
+                     "Message":  "Disponible"
+                 },
+                 {
+                     "Url":  "https://unicollections-gt.mcnoc.app/Login.aspx",
+                     "Status":  "OK",
+                     "HttpCode":  200,
+                     "ResponseMs":  1246,
+                     "Message":  "Disponible"
+                 }
+             ],
+    "ports":  [
+                  {
+                      "Port":  80,
+                      "Name":  "HTTP",
+                      "Description":  "Puerto usado para trafico web sin cifrado.",
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  },
+                  {
+                      "Port":  443,
+                      "Name":  "HTTPS",
+                      "Description":  "Puerto usado para trafico web seguro mediante SSL/TLS.",
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  },
+                  {
+                      "Port":  3389,
+                      "Name":  "RDP",
+                      "Description":  "Puerto usado para conexion remota al servidor mediante Remote Desktop.",
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  },
+                  {
+                      "Port":  1433,
+                      "Name":  "SQL Server",
+                      "Description":  "Puerto comunmente usado por Microsoft SQL Server.",
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  }
+              ],
+    "findings":  [
+                     {
+                         "Severity":  "ALERTA",
+                         "Title":  "IIS no disponible",
+                         "Detail":  "No fue posible consultar IIS: No se cargó el módulo \u0027WebAdministration\u0027 especificado porque no se encontró ningún archivo de módulo válido en ningún directorio de módulo.",
+                         "Recommendation":  "Validar si IIS esta instalado y si el usuario tiene permisos suficientes."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Servicio no encontrado",
+                         "Detail":  "El servicio W3SVC no existe en este servidor.",
+                         "Recommendation":  "Confirmar si el servicio aplica para el tipo de servidor configurado."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Servicio no encontrado",
+                         "Detail":  "El servicio WAS no existe en este servidor.",
+                         "Recommendation":  "Confirmar si el servicio aplica para el tipo de servidor configurado."
+                     },
+                     {
+                         "Severity":  "ALERTA",
+                         "Title":  "Servicio detenido",
+                         "Detail":  "El servicio SQLSERVERAGENT se encuentra en estado Stopped.",
+                         "Recommendation":  "Validar si el servicio es requerido para este servidor y reiniciarlo si aplica."
+                     },
+                     {
+                         "Severity":  "ALERTA",
+                         "Title":  "Servicio detenido",
+                         "Detail":  "El servicio WinRM se encuentra en estado Stopped.",
+                         "Recommendation":  "Validar si el servicio es requerido para este servidor y reiniciarlo si aplica."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Eventos criticos o errores recientes",
+                         "Detail":  "Se detectaron 10 eventos de nivel critico/error en System durante las ultimas 24 horas.",
+                         "Recommendation":  "Revisar el visor de eventos para identificar recurrencia, origen e impacto."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 80 (HTTP) aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 443 (HTTPS) aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 3389 (RDP) aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 1433 (SQL Server) aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     }
+                 ],
+    "paths":  {
+                  "pdf":  "C:\\Scripts\\HealthCheck\\reports\\pdf\\HealthCheck_PC-SOP015_2026-05-19_13-56-21.pdf",
+                  "html":  "C:\\Scripts\\HealthCheck\\reports\\html\\HealthCheck_PC-SOP015_2026-05-19_13-56-21.html",
+                  "log":  "C:\\Scripts\\HealthCheck\\reports\\logs\\HealthCheck_PC-SOP015_2026-05-19_13-56-21.log"
+              }
+}

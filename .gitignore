@@ -1,0 +1,8 @@
+reports/
+credentials/
+*.log
+*.pdf
+*.html
+*.xml
+config.json
+.vscode/

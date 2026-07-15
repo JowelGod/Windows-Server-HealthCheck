@@ -1,0 +1,170 @@
+﻿{
+    "serverName":  "PC-SOP015",
+    "user":  "SoporteMCCollect",
+    "executionDate":  "2026-05-18 18:17:29",
+    "environment":  "Produccion",
+    "client":  "General",
+    "serverType":  "Web",
+    "status":  "ALERTA",
+    "summary":  "El servidor se encuentra operativo, pero presenta condiciones que requieren atencion para prevenir afectacion al servicio.",
+    "operatingSystem":  {
+                            "caption":  "Microsoft Windows 11 Pro",
+                            "uptime":  "0 dias, 2 horas, 39 minutos",
+                            "version":  "10.0.26200",
+                            "lastBoot":  "05/18/2026 15:37:52"
+                        },
+    "metrics":  {
+                    "ramFreeGB":  6.77,
+                    "ramUsage":  57.39,
+                    "ramStatus":  "OK",
+                    "ramTotalGB":  15.89,
+                    "cpuUsage":  22,
+                    "cpuStatus":  "OK"
+                },
+    "disks":  [
+
+              ],
+    "services":  [
+                     {
+                         "Name":  "W3SVC",
+                         "DisplayName":  "No encontrado",
+                         "Status":  "No encontrado"
+                     },
+                     {
+                         "Name":  "WAS",
+                         "DisplayName":  "No encontrado",
+                         "Status":  "No encontrado"
+                     },
+                     {
+                         "Name":  "MSSQLSERVER",
+                         "DisplayName":  "SQL Server (MSSQLSERVER)",
+                         "Status":  "Running"
+                     },
+                     {
+                         "Name":  "SQLSERVERAGENT",
+                         "DisplayName":  "SQL Server Agent (MSSQLSERVER)",
+                         "Status":  "Stopped"
+                     },
+                     {
+                         "Name":  "Schedule",
+                         "DisplayName":  "Programador de tareas",
+                         "Status":  "Running"
+                     },
+                     {
+                         "Name":  "WinRM",
+                         "DisplayName":  "Administración remota de Windows (WS-Management)",
+                         "Status":  "Stopped"
+                     }
+                 ],
+    "urls":  [
+                 {
+                     "Url":  "https://unicollections-hn.mcnoc.app/Login.aspx",
+                     "Status":  "OK",
+                     "HttpCode":  200,
+                     "ResponseMs":  1257,
+                     "Message":  "Disponible"
+                 },
+                 {
+                     "Url":  "https://unicollections-gt.mcnoc.app/Login.aspx",
+                     "Status":  "OK",
+                     "HttpCode":  200,
+                     "ResponseMs":  1532,
+                     "Message":  "Disponible"
+                 }
+             ],
+    "ports":  [
+                  {
+                      "Port":  80,
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  },
+                  {
+                      "Port":  443,
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  },
+                  {
+                      "Port":  3389,
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  },
+                  {
+                      "Port":  1433,
+                      "Status":  "Cerrado",
+                      "Message":  "No se detecto escucha local"
+                  }
+              ],
+    "findings":  [
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Discos no disponibles",
+                         "Detail":  "No fue posible obtener informacion de discos locales.",
+                         "Recommendation":  "Validar permisos del usuario o estado de WMI/CIM."
+                     },
+                     {
+                         "Severity":  "ALERTA",
+                         "Title":  "IIS no disponible",
+                         "Detail":  "No fue posible consultar IIS: No se cargó el módulo \u0027WebAdministration\u0027 especificado porque no se encontró ningún archivo de módulo válido en ningún directorio de módulo.",
+                         "Recommendation":  "Validar si IIS esta instalado y si el usuario tiene permisos suficientes."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Servicio no encontrado",
+                         "Detail":  "El servicio W3SVC no existe en este servidor.",
+                         "Recommendation":  "Confirmar si el servicio aplica para el tipo de servidor configurado."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Servicio no encontrado",
+                         "Detail":  "El servicio WAS no existe en este servidor.",
+                         "Recommendation":  "Confirmar si el servicio aplica para el tipo de servidor configurado."
+                     },
+                     {
+                         "Severity":  "ALERTA",
+                         "Title":  "Servicio detenido",
+                         "Detail":  "El servicio SQLSERVERAGENT se encuentra en estado Stopped.",
+                         "Recommendation":  "Validar si el servicio es requerido para este servidor y reiniciarlo si aplica."
+                     },
+                     {
+                         "Severity":  "ALERTA",
+                         "Title":  "Servicio detenido",
+                         "Detail":  "El servicio WinRM se encuentra en estado Stopped.",
+                         "Recommendation":  "Validar si el servicio es requerido para este servidor y reiniciarlo si aplica."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Eventos criticos o errores recientes",
+                         "Detail":  "Se detectaron 10 eventos de nivel critico/error en System durante las ultimas 24 horas.",
+                         "Recommendation":  "Revisar el visor de eventos para identificar recurrencia, origen e impacto."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 80 aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 443 aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 3389 aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     },
+                     {
+                         "Severity":  "REVISAR",
+                         "Title":  "Puerto cerrado",
+                         "Detail":  "El puerto 1433 aparece cerrado localmente.",
+                         "Recommendation":  "Confirmar si el puerto aplica para este servidor y si el servicio asociado debe estar activo."
+                     }
+                 ],
+    "paths":  {
+                  "pdf":  "C:\\Scripts\\HealthCheck\\reports\\pdf\\HealthCheck_PC-SOP015_2026-05-18_18-17-14.pdf",
+                  "html":  "C:\\Scripts\\HealthCheck\\reports\\html\\HealthCheck_PC-SOP015_2026-05-18_18-17-14.html",
+                  "log":  "C:\\Scripts\\HealthCheck\\reports\\logs\\HealthCheck_PC-SOP015_2026-05-18_18-17-14.log"
+              }
+}
